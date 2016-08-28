@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1065154128407",
+    "firebase_url": "https://rbitr-a288d.firebaseio.com",
+    "project_id": "rbitr-a288d",
+    "storage_bucket": "rbitr-a288d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1065154128407:android:7ac295eb1d943afb",
+        "android_client_info": {
+          "package_name": "com.example.punya.rbitr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1065154128407-pebc0cjpe6khob8v1edh24rnndf8emg4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.punya.rbitr",
+            "certificate_hash": "0044111ABF337093F23DE18EC9A44EFEC1D0AF40"
+          }
+        },
+        {
+          "client_id": "1065154128407-dck7mr3goml7p1nic932n53drc60ss6q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxYwe3V4M3MOY0nelTjH-n2KIpmQw2tjE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1065154128407-dck7mr3goml7p1nic932n53drc60ss6q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

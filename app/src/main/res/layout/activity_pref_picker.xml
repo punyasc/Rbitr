@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.punya.rbitr.PrefPickerActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Select how much you enjoy these types of food, on a scale from 1 to 5."
+        android:id="@+id/titleTextView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleTextView">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="American"
+                android:id="@+id/americanTV"
+                android:layout_below="@+id/titleTextView"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ratingBarAmerican"
+                android:layout_alignParentStart="true"
+                android:stepSize="1"
+                android:layout_below="@+id/americanTV"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Chinese"
+                android:id="@+id/chineseTV"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/ratingBarAmerican"
+                android:layout_alignParentLeft="true" />
+
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ratingBarChinese"
+                android:layout_alignParentStart="true"
+                android:stepSize="1"
+                android:layout_below="@+id/chineseTV"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="French"
+                android:id="@+id/frenchTV"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/ratingBarChinese"
+                android:layout_alignParentLeft="true" />
+
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ratingBarFrench"
+                android:layout_alignParentStart="true"
+                android:stepSize="1"
+                android:layout_below="@+id/frenchTV"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Indian"
+                android:id="@+id/indianTV"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/ratingBarFrench"
+                android:layout_alignParentLeft="true" />
+
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ratingBarIndian"
+                android:layout_alignParentStart="true"
+                android:stepSize="1"
+                android:layout_below="@+id/indianTV"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Italian"
+                android:id="@+id/italianTV"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/ratingBarIndian"
+                android:layout_alignParentLeft="true" />
+
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ratingBarItalian"
+                android:layout_alignParentStart="true"
+                android:stepSize="1"
+                android:layout_below="@+id/italianTV"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Japanese"
+                android:id="@+id/japaneseTV"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/ratingBarItalian"
+                android:layout_alignParentLeft="true" />
+
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ratingBarJapanese"
+                android:layout_alignParentStart="true"
+                android:stepSize="1"
+                android:layout_below="@+id/japaneseTV"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Mediterranean"
+                android:id="@+id/mediterraneanTV"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/ratingBarJapanese"
+                android:layout_alignParentLeft="true" />
+
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ratingBarMediterranean"
+                android:layout_alignParentStart="true"
+                android:stepSize="1"
+                android:layout_below="@+id/mediterraneanTV"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Mexican"
+                android:id="@+id/mexicanTV"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/ratingBarMediterranean"
+                android:layout_alignParentLeft="true" />
+
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ratingBarMexican"
+                android:layout_alignParentStart="true"
+                android:stepSize="1"
+                android:layout_below="@+id/mexicanTV"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Vegan"
+                android:id="@+id/veganTV"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/ratingBarMexican"
+                android:layout_alignParentLeft="true" />
+
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ratingBarVegan"
+                android:layout_alignParentStart="true"
+                android:stepSize="1"
+                android:layout_below="@+id/veganTV"
+                android:layout_alignParentLeft="true" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ratingBarVegan"
+                android:onClick="prefSaveButton"
+                android:text="Save Preferences" />
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
