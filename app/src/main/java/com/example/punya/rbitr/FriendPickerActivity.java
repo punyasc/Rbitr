@@ -34,6 +34,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class FriendPickerActivity extends AppCompatActivity {
@@ -52,6 +53,8 @@ public class FriendPickerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_picker);
         FacebookSdk.sdkInitialize(getApplicationContext());
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        addToDatabase(Profile.getCurrentProfile().getId(), -1);
         /* Make graph request */
         GraphRequestAsyncTask request = new GraphRequest(
                 AccessToken.getCurrentAccessToken(),
@@ -123,26 +126,69 @@ public class FriendPickerActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> a, View v, int position,
                                     long id) {
-                if (selectedIndexes.contains(position)) {
-                    selectedIndexes.remove(position);
-                    //Button remButton = (Button) findViewById(777 - position);
-                    //ViewGroup layout = (ViewGroup) remButton.getParent();
-                    //if(null!=layout) //for safety only  as you are doing onClick
-                    //    layout.removeView(remButton);
-                } else {
+                if (!selectedIndexes.contains(position)) {
                     selectedIndexes.add(position);
+                    final int pos = position;
+                    final String fbid = allIds.get(position);
+                    addToDatabase(fbid, position);
                     //Button newButton = new Button(FriendPickerActivity.this);
                     //newButton.setVisibility(View.VISIBLE);
                     //newButton.setText(allNames.get(position));
                     //newButton.setId(777 + position);
+                } else {
+                    selectedIndexes.remove(position);
+                    selectedMap.remove(position);
+                    //Button remButton = (Button) findViewById(777 - position);
+                    //ViewGroup layout = (ViewGroup) remButton.getParent();
+                    //if(null!=layout) //for safety only  as you are doing onClick
+                    //    layout.removeView(remButton);
                 }
             }
         });
     }
 
+    public void addToDatabase(final String fbid, final int pos) {
+        mDatabase.child("users").child(fbid).addListenerForSingleValueEvent(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.getValue() == null) {
+                            Log.d("abc", "VALUE NULL");
+                        } else {
+                            RUser thisUser = dataSnapshot.getValue(RUser.class);
+                            Integer[] prefs = new Integer[9];
+                            prefs[0] = thisUser.american;
+                            prefs[1] = thisUser.chinese;
+                            prefs[2] = thisUser.french;
+                            prefs[3] = thisUser.indian;
+                            prefs[4] = thisUser.italian;
+                            prefs[5] = thisUser.japanese;
+                            prefs[6] = thisUser.mediterranean;
+                            prefs[7] = thisUser.mexican;
+                            prefs[8] = thisUser.vegan;
+                            selectedMap.put(pos, prefs);
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.w("c", "getUser:onCancelled", databaseError.toException());
+                    }
+                });
+    }
+
     public String[] arrayListToArray(List<String> list) {
         Object[] objList = list.toArray();
         return Arrays.copyOf(objList, objList.length, String[].class);
+    }
+
+    public String toString(Integer[] arr) {
+        String ret = "{ ";
+        for (int i = 0; i < arr.length; i++) {
+            ret = ret + arr[i] + ", ";
+        }
+        ret += "}";
+        Toast.makeText(FriendPickerActivity.this, ret, Toast.LENGTH_LONG).show();
+        return ret;
     }
 
     public void selectButtonClicked(View view) {
@@ -152,42 +198,17 @@ public class FriendPickerActivity extends AppCompatActivity {
             if (checked.get(i)) {
                 Log.i("tester", allNames.get(i));
             }
-        final int[] summedPrefs = {0, 0, 0, 0, 0, 0, 0, 0, 0};
-        final int onChangeCounter = 0;
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        for (Integer i : selectedIndexes) {
-            //String thisId = allFriends.get(i).getId();
-            mDatabase.child("users").child(allIds.get(i)).addListenerForSingleValueEvent(
-                    new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            if (dataSnapshot.getValue() == null) {
-                                Log.d("abc", "VALUE NULL");
-                            } else {
-                                RUser thisUser = dataSnapshot.getValue(RUser.class);
-                                Log.i("foodpref", "" + thisUser.chinese);
-                                summedPrefs[0] += thisUser.american;
-                                summedPrefs[1] += thisUser.chinese;
-                                summedPrefs[2] += thisUser.french;
-                                summedPrefs[3] += thisUser.indian;
-                                summedPrefs[4] += thisUser.italian;
-                                summedPrefs[5] += thisUser.japanese;
-                                summedPrefs[6] += thisUser.mediterranean;
-                                summedPrefs[7] += thisUser.mexican;
-                                summedPrefs[8] += thisUser.vegan;
-                                for (int i = 0; i < summedPrefs.length; i++) {
-                                    Log.i("daaa", "index " + i + " rating " + summedPrefs[i]);
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                            Log.w("c", "getUser:onCancelled", databaseError.toException());
-                        }
-                    });
+        Integer[] summedPrefs = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+        for(Map.Entry<Integer, Integer[]> entry : selectedMap.entrySet()) {
+            Log.i("testtttt", "HALPp");
+            Integer key = entry.getKey();
+            Integer[] value = entry.getValue();
+            String to = toString(value);
+            //Toast.makeText(FriendPickerActivity.this, to, Toast.LENGTH_SHORT);
+            for (int i = 0; i < value.length; i++) {
+                summedPrefs[i] += value[i];
+            }
         }
-        Log.i("INDEXCHECK", "sihhze = " + allIds.size());
         int maxRating = 0;
         int chosenIndex = 0;
         for (int i = 0; i < summedPrefs.length; i++) {
@@ -197,7 +218,7 @@ public class FriendPickerActivity extends AppCompatActivity {
                 chosenIndex = i;
             }
         }
-        Log.i("INDEXCHECK", "sihhze = " + chosenIndex);
+        toString(summedPrefs);
         indexToCategory(chosenIndex);
     }
 
