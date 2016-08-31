@@ -47,7 +47,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".HomeActivity" />
-        <activity android:name=".PrefPickerActivity"></activity>
+        <activity android:name=".PrefPickerActivity" />
+        <activity android:name=".FriendPickerActivity"></activity>
     </application>
 
 </manifest>

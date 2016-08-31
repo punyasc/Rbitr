@@ -17,6 +17,10 @@ public class RUser {
     public int mexican;
     public int vegan;
 
+    public RUser() {
+
+    }
+
     public RUser(String userID, int am, int ch, int fr, int in, int it, int ja, int med, int mex, int ve) {
         facebookid = userID;
         american = am;

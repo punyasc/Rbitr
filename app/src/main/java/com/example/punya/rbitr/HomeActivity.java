@@ -34,7 +34,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        FacebookSdk.sdkInitialize(getApplicationContext());
         //email = getIntent().getStringExtra("email");
         setContentView(R.layout.activity_home);
 
@@ -59,6 +59,11 @@ public class HomeActivity extends AppCompatActivity {
     public void logoutButtonClick(View view) {
         LoginManager.getInstance().logOut();
         Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void chooseFriendsButtonClick(View view) {
+        Intent intent = new Intent(HomeActivity.this, FriendPickerActivity.class);
         startActivity(intent);
     }
 }
